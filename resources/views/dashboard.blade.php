@@ -86,7 +86,7 @@ $bal = App\Models\Wallet::where('user_id', '=', Auth::user()->id)->sum('balance'
                                     <li><a href="{{route('manageuser')}}"><i class="ti-user"></i> Manage User</a></li>
                                     <?php }?>
                                     <li><a href="#"><i class="ti-settings"></i> Settings</a></li>
-                                    <li><a href="logout"><i class="ti-key"></i> Logout</a></li>
+                                    <li><a href="{{ url('logout') }}"><i class="ti-key"></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -109,7 +109,7 @@ $bal = App\Models\Wallet::where('user_id', '=', Auth::user()->id)->sum('balance'
                                     <li><a href="{{ route('manageuser') }}">Mange User</a></li>
                                     <?php }?>
                                     <li><a href="{{route('dashboard')}}">My Profile</a></li>
-                                    <li><a href="logout">Logout</a></li>
+                                    <li><a href="{{ url('logout') }}">Logout</a></li>
                                 </ul>
                             </li>
                             

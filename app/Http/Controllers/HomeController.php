@@ -94,7 +94,8 @@ class HomeController extends Controller
     }
 
     public function viewtrans($user){ 
+        $username = User::where('id', $user)->first('name');
         $datas = Wallet::where('user_id','=',$user)->orderBy('id')->get();       
-        return view('viewtrans',['datas'=>$datas]);
+        return view('viewtrans',['datas'=>$datas, 'username'=>$username]);
     }
 }

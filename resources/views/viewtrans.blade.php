@@ -83,7 +83,7 @@
                                         <li><a href="{{route('manageuser')}}"><i class="ti-user"></i> Manage User</a></li>
                                     <?php }?>
                                     <li><a href="#"><i class="ti-settings"></i> Settings</a></li>
-                                    <li><a href="logout"><i class="ti-key"></i> Logout</a></li>
+                                    <li><a href="{{ url('logout') }}"><i class="ti-key"></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -106,7 +106,7 @@
                                         <li><a href="{{ route('manageuser') }}">Mange User</a></li>
                                     <?php }?>
                                     <li><a href="{{route('dashboard')}}">My Profile</a></li>
-                                    <li><a href="logout">Logout</a></li>
+                                    <li><a href="{{ url('logout') }}">Logout</a></li>
                                 </ul>
                             </li>
                             
@@ -137,7 +137,7 @@
                             <div class="panel panel-bd lobidrag">
                                 <div class="panel-heading">
                                     <div class="panel-title">
-                                        <h4>User Trans Details </h4>
+                                        <h4>{{$username->name}} Trans Details </h4>
                                     </div>
                                 </div>
                                 <div class="panel-body">
