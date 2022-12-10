@@ -174,7 +174,7 @@
                                                     <td>{{ $data->mobile; }}</td>
                                                     <td>{{ $bal; }}</td>
                                                     <td>
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal" onclick="clickaddBal({{ $data->id; }});">
+                                                        <button type="button" class="btn btn-success" data-toggle="modal" onclick="clickaddBal({{ $data->id; }});">
                                                             Topup wallet
                                                         </button>
                                                         <a href="{{ $viewurl }}" class="btn btn-primary">

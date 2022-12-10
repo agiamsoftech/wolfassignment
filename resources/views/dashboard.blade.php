@@ -146,7 +146,7 @@ $bal = App\Models\Wallet::where('user_id', '=', Auth::user()->id)->sum('balance'
                                     <div class="panel-title">
                                         <h4>{{ Auth::user()->name }}</h4>
                                         <?php if(Auth::user()->id != 1){ ?>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" onclick="clickaddBal({{ Auth::user()->id }});">
+                                        <button type="button" class="btn btn-success" data-toggle="modal" onclick="clickaddBal({{ Auth::user()->id }});">
                                             Topup wallet
                                         </button>
                                         <?php }?>
