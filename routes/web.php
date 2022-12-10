@@ -49,3 +49,5 @@ Route::get('/manageuser', [HomeController::class, 'manageUser'])->name('manageus
 Route::post('/addbal', [HomeController::class, 'addWallet'])->name('addbal');
 
 Route::post('clickmodal', [HomeController::class, 'clickmodal'])->name('clickmodal');
+
+Route::get('viewtrans/{user?}', [HomeController::class, 'viewtrans'])->name('viewtrans');

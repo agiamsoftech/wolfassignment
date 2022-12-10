@@ -257,15 +257,17 @@ $bal = App\Models\Wallet::where('user_id', '=', Auth::user()->id)->sum('balance'
             }
         </script>
         <!-- START CORE PLUGINS -->
-        <script src="assets/plugins/jQuery/jquery-1.12.4.min.js"></script>
-        <script src="assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-        <script src="assets/plugins/fastclick/fastclick.min.js"></script>
-        <script src="assets/plugins/metisMenu/metisMenu.min.js"></script>
-        <script src="assets/plugins/lobipanel/lobipanel.min.js"></script>
+        <script src="{{ url('assets/plugins/jQuery/jquery-1.12.4.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js') }}"></script>
+        <script src="{{ url('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/fastclick/fastclick.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/metisMenu/metisMenu.min.js') }}"></script>
+        <script src="{{ url('assets/plugins/lobipanel/lobipanel.min.js') }}"></script>
         <!-- START THEME LABEL SCRIPT -->
-        <script src="assets/dist/js/theme.js"></script>
+        <script src="{{ url('assets/dist/js/theme.js') }}"></script>
+        
+        
     </body>
 
 

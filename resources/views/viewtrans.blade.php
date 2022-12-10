@@ -9,8 +9,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>{{ Auth::user()->name }}</title>
-        <link rel="shortcut icon" href="assets/dist/img/favicon.png" type="image/x-icon">
-        <script src="ajax/libs/webfont/1.6.26/webfont.js"></script>
+        <link rel="shortcut icon" href="{{ url('assets/dist/img/favicon.png') }}" type="image/x-icon">
+        <script src="{{ url('ajax/libs/webfont/1.6.26/webfont.js') }}"></script>
         <script>
             WebFont.load({
                 google: {families: ['Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i']},
@@ -20,17 +20,12 @@
             });
         </script>
         <!-- START GLOBAL MANDATORY STYLE -->
-         <link href="assets/dist/css/base.css" rel="stylesheet" type="text/css">
+         <link href="{{ url('assets/dist/css/base.css') }}" rel="stylesheet" type="text/css">
         <!-- START PAGE LABEL PLUGINS --> 
 
         <!-- START THEME LAYOUT STYLE -->
-        <link href="assets/dist/css/style.css" rel="stylesheet" type="text/css"/>
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <link href="{{ url('assets/dist/css/style.css') }}" rel="stylesheet" type="text/css"/>
+        
     </head>
     <body class="hold-transition fixed sidebar-mini">
         
@@ -43,11 +38,11 @@
                 <a href="#" class="logo"> <!-- Logo -->
                     <span class="logo-mini">
                         <!--<b>A</b>H-admin-->
-                        <img src="assets/dist/img/aglogo.png" alt="img">
+                        <img src="{{ url('assets/dist/img/aglogo.png') }}" alt="img">
                     </span>
                     <span class="logo-lg">
                         <!--<b>Admin</b>H-admin-->
-                        <img src="assets/dist/img/aglogo.png" alt="img" style="height: 60px;">
+                        <img src="{{ url('assets/dist/img/aglogo.png') }}" alt="img" style="height: 60px;">
                     </span>
                 </a>
                 <!-- Header Navbar -->
@@ -142,7 +137,7 @@
                             <div class="panel panel-bd lobidrag">
                                 <div class="panel-heading">
                                     <div class="panel-title">
-                                        <h4>Manage User </h4>
+                                        <h4>User Trans Details </h4>
                                     </div>
                                 </div>
                                 <div class="panel-body">
@@ -151,36 +146,22 @@
                                         <table id="example2" class="footable table table-hover" >
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Mobile</th>
-                                                    <th>Balance</th>
-                                                    <th style="width:20%;">Action</th>
+                                                    <th>Trans ID</th>
+                                                    <th>Amount</th>
+                                                    <th>Date</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($results as $data)
+                                                @foreach ($datas as $data)
                                                 <?php
-                                                    
-                                                    $bal = App\Models\Wallet::where('user_id', '=', $data->id)->sum('balance');
-                                                    
-													$userid         =   $data->id;
-													
-													$viewurl		= 	'viewtrans/'.$userid;
+                                                    $date= $data->created_at;
+                                                    $dd = date_format($date,"Y-m-d");                                                    
                                                 ?>
                                                 <tr>
-                                                    <td>{{ $data->name; }} </td>
-                                                    <td>{{ $data->email; }}</td>
-                                                    <td>{{ $data->mobile; }}</td>
-                                                    <td>{{ $bal; }}</td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal" onclick="clickaddBal({{ $data->id; }});">
-                                                            Topup wallet
-                                                        </button>
-                                                        <a href="{{ $viewurl }}" class="btn btn-primary">
-                                                            View Trans
-                                                        </button>
-                                                    </td>
+                                                    <td>{{ $data->id; }} </td>
+                                                    <td>{{ $data->balance; }}</td>
+                                                    <td>{{ $dd; }}</td>
+                                                    
                                                     
                                                 </tr>  
                                                 @endforeach
@@ -209,50 +190,7 @@
             </footer>
         </div> <!-- ./wrapper -->
         
-        <div id="user-wallet-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title">Add Balance</h4>
-                    </div>
-                    <div class="modal-body" id="wallet_body">                
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            function clickaddBal(user_id){
-                $.ajax({
-                    url: '{{ route("clickmodal") }}',
-                    type: 'POST',
-                    data: {
-                        'user_id':      user_id,
-                        '_token':       $('input[name=_token]').val()
-                    },
-                    success: function(data){
-                        $('#wallet_body').html(data);
-                        $('#user-wallet-modal').modal('show');
-                    }
-                }); 
-            }
-            function addwallet(user_id){
-                $.ajax({
-                    url: '{{ route("clickmodal") }}',
-                    type: 'POST',
-                    data: {
-                        'user_id':      user_id,
-                        '_token':       $('input[name=_token]').val()
-                    },
-                    success: function(data){
-                        $('#wallet_body').html(data);
-                        $('#user-wallet-modal').modal('show');
-                    }
-                }); 
-            }
-        </script>
+        
         <!-- START CORE PLUGINS -->
         <script src="{{ url('assets/plugins/jQuery/jquery-1.12.4.min.js') }}"></script>
         <script src="{{ url('assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js') }}"></script>

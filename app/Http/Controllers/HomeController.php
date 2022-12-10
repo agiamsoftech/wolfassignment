@@ -92,4 +92,9 @@ class HomeController extends Controller
     public function clickmodal(Request $request){        
         return view('walletmodal',['user_id'=>$request->user_id]);
     }
+
+    public function viewtrans($user){ 
+        $datas = Wallet::where('user_id','=',$user)->orderBy('id')->get();       
+        return view('viewtrans',['datas'=>$datas]);
+    }
 }
